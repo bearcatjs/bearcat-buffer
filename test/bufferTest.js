@@ -9,15 +9,48 @@ var case1 = [1, '1', 'aaa', 1.2, {
 
 var case2 = [-100];
 
-var value = case1;
+var o = {
+	id: 4,
+	frontendId: 'connector-server-1',
+	uid: 210073,
+	settings: {}
+};
 
-outBuffer.writeObject(value);
-// outBuffer.writeObject(case1);
+var case3 = [100, 'aaa', o];
 
-var buf = outBuffer.getBuffer();
-console.log(buf.length);
+var case4 = ["user", 220062, {
+	"oid": 210087,
+	"name": "",
+	"gender": 1,
+	"create_tm": 0,
+	"create_ip": "127.0.0.1",
+	"honor": 0,
+	"gold_cur": 0,
+	"gold_total": 0,
+	"online_tm": 0,
+	"timestamp": 0,
+	"level": 1,
+	"scene": "{\"userForce\":1100024}",
+	"id": 220062
+}];
 
-var inBuffer = new InBuffer(buf);
-var obj = inBuffer.readObject();
+var case5 = [null, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 174, 1111111111111111]];
 
-console.log(obj)
+var case6 = 0;
+
+var value = case5;
+
+var num = 1;
+for (var i = 0; i < num; i++) {
+	outBuffer.writeObject(value);
+	// outBuffer.writeObject(case1);
+
+	var buf = outBuffer.getBuffer();
+	console.log(buf)
+	console.log(buf.length);
+
+	var inBuffer = new InBuffer(buf);
+	var obj = inBuffer.readObject();
+
+	console.log(obj)
+}
